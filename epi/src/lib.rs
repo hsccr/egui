@@ -239,6 +239,9 @@ pub struct NativeOptions {
     /// You control the transparency with [`App::clear_color()`].
     /// You should avoid having a [`egui::CentralPanel`], or make sure its frame is also transparent.
     pub transparent: bool,
+
+    /// Fullscreen.
+    pub fullscreen: bool,
 }
 
 impl Default for NativeOptions {
@@ -252,6 +255,7 @@ impl Default for NativeOptions {
             initial_window_size: None,
             resizable: true,
             transparent: false,
+            fullscreen: false,
         }
     }
 }

@@ -36,7 +36,14 @@ pub fn run(app: Box<dyn epi::App>, native_options: &epi::NativeOptions) -> ! {
     let persistence = egui_winit::epi::Persistence::from_app_name(app.name());
     let window_settings = persistence.load_window_settings();
     let window_builder =
-        egui_winit::epi::window_builder(native_options, &window_settings).with_title(app.name());
+        egui_winit::epi::window_builder(native_options, &window_settings)
+            .with_title(app.name())
+            .with_fullscreen(if native_options.fullscreen {
+                Some(glutin::window::Fullscreen::Borderless(None))
+            } else {
+                None
+            });
+
     let event_loop = glutin::event_loop::EventLoop::with_user_event();
     let display = create_display(window_builder, &event_loop);
 
